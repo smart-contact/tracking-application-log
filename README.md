@@ -20,3 +20,8 @@ and add inside 'providers' the package's reference
     
     ...
 ```
+
+Finally, on the root of project, do this command
+```
+php artisan migrate
+```

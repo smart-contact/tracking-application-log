@@ -1,0 +1,20 @@
+{
+    "name": "smart-contact/tracking-application-log",
+    "authors": [
+        {
+            "name": "matteodeliperi",
+            "email": "matteo.deliperi@smart-contact.it"
+        }
+    ],
+    "require": {
+        "jenssegers/agent": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "TrackingApplicationLog\\": "src/"
+        },
+        "files" : [
+            "src/app/ApplicationLogHelpers.php"
+        ]
+    }
+}

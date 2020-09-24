@@ -16,7 +16,7 @@
 
 @section('content')
     <h1 class="text-2xl text-gray-800">Application Logs</h1>
-    <div class="my-4 p-5 bg-white rounded-lg shadow-lg">
+    <div class="my-4 p-3 bg-white rounded-lg shadow-lg">
         <table class="border w-full">
             <tr>
                 <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">

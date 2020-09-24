@@ -12,9 +12,6 @@
     "autoload": {
         "psr-4": {
             "TrackingApplicationLog\\": "src/"
-        },
-        "files" : [
-            "src/app/ApplicationLogHelpers.php"
-        ]
+        }
     }
 }

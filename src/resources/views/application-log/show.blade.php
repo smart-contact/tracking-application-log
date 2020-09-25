@@ -5,45 +5,45 @@
         <div class="sm:w-full md:w-2/3 md:mr-10 mb-10">
             <div>
                 <div>
-                    Description: {{ $applicationLog->description }}
+                    Descrizione: {{ $applicationLog->description }}
                 </div>
 
                 <div>
                     @if($applicationLog->actor_id)
-                        Actor ID: {{ $applicationLog->actor_id }}
+                        ID Utente: {{ $applicationLog->actor_id }}
                     @endif
                 </div>
 
                 <div>
-                    Subject: {!! $applicationLog->subject !!}
+                    Soggetto: {!! $applicationLog->subject !!}
                 </div>
 
                 <div>
-                    Level: {!! $applicationLog->level !!}
+                    Livello: {!! $applicationLog->level ?? '-' !!}
                 </div>
 
                 <div>
-                    User Agent: {!! $applicationLog->user_agent !!}
+                    User Agent: {!! $applicationLog->user_agent ?? '-' !!}
                 </div>
 
                 <div>
-                    Browser: {!! $applicationLog->browser !!}
+                    Browser: {!! $applicationLog->browser ?? '-' !!}
                 </div>
 
                 <div>
-                    Browser Version{!! $applicationLog->browser_version !!}
+                    Versione Browser: {!! $applicationLog->browser_version ?? '-' !!}
                 </div>
 
                 <div>
-                    Platform: {!! $applicationLog->platform !!}
+                    Piattaforma: {!! $applicationLog->platform ?? '-' !!}
                 </div>
 
                 <div>
-                    Platform Version: {!! $applicationLog->platform_version !!}
+                    Versione Piattaforma: {!! $applicationLog->platform_version ?? '-' !!}
                 </div>
 
                 <div>
-                    IP: {!! $applicationLog->ip !!}
+                    IP: {!! $applicationLog->ip ?? '-' !!}
                 </div>
 
                 <div>

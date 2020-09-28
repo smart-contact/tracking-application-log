@@ -1,0 +1,31 @@
+<?php
+
+namespace SmartContact\TrackingApplicationLog;
+
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
+
+class TrackingApplicationLogProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+
+        $this->gate();
+    }
+
+    /**
+     *
+     */
+    protected function gate()
+    {
+        Gate::define('application_logs', function ($user) {
+            /**
+             * TODO Descrizione
+             */
+        });
+    }
+}

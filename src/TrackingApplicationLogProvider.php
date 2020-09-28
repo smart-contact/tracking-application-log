@@ -2,6 +2,7 @@
 
 namespace SmartContact\TrackingApplicationLog;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class TrackingApplicationLogProvider extends ServiceProvider
@@ -26,5 +27,15 @@ class TrackingApplicationLogProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'tracking-application-log');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+    }
+
+    /**
+     *
+     */
+    protected function gate()
+    {
+        Gate::define('viewTelescope', function ($user) {
+            return $user->isAdmin();
+        });
     }
 }

@@ -34,7 +34,7 @@ class TrackingApplicationLogProvider extends ServiceProvider
      */
     protected function gate()
     {
-        Gate::define('viewTelescope', function ($user) {
+        Gate::define('application_logs', function ($user) {
             return $user->isAdmin();
         });
     }

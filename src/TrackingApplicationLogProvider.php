@@ -28,7 +28,9 @@ class TrackingApplicationLogProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/resources/views', 'tracking-application-log');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
-        $this->gate();
+        $this->publishes([
+            __DIR__.'/../stubs/TrackingApplicationLogProvider.stub' => app_path('Providers/TrackingApplicationLogProvider.php'),
+        ], 'application-log-provider');
     }
 
     /**
@@ -37,7 +39,9 @@ class TrackingApplicationLogProvider extends ServiceProvider
     protected function gate()
     {
         Gate::define('application_logs', function ($user) {
-            return $user->isAdmin();
+            /**
+             * TODO Descrizione
+             */
         });
     }
 }

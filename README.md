@@ -21,7 +21,23 @@ and add inside 'providers' the package's reference
     ...
 ```
 
-Finally, on the root of project, do this command
+On the root of project, do this command for create the application_logs table
 ```
 php artisan migrate
+```
+
+On the root of project, do this command for create the TrackingApplicationLogProvider.php file.
+```
+php artisan tracking-application-log:install
+```
+On TrackingApplicationLogProvider.php you can create your own policy logic in the gate() method.
+```
+protected function gate()
+    {
+        Gate::define('application_logs', function ($user) {
+            /**
+             * TODO Create your own policy logic
+             */
+        });
+    }
 ```

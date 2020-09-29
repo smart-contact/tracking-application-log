@@ -25,7 +25,7 @@ class TrackingApplicationLogProvider extends ServiceProvider
     {
         Gate::define('application_logs', function ($user) {
             /**
-             * TODO Descrizione
+             * TODO Create your own policy logic
              */
         });
     }

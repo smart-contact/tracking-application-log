@@ -14,7 +14,9 @@ class TrackingApplicationLogProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->commands([
+            Console\InstallCommand::class,
+        ]);
     }
 
     /**
@@ -29,19 +31,7 @@ class TrackingApplicationLogProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
         $this->publishes([
-            __DIR__.'/../stubs/TrackingApplicationLogProvider.stub' => app_path('Providers/TrackingApplicationLogProvider.php'),
-        ], 'application-log-provider');
-    }
-
-    /**
-     *
-     */
-    protected function gate()
-    {
-        Gate::define('application_logs', function ($user) {
-            /**
-             * TODO Descrizione
-             */
-        });
+            __DIR__ . "/stubs/TrackingApplicationLogProvider.stub"=> app_path('Providers/TrackingApplicationLogServiceProvider.php'),
+        ], 'tracking-application-log');
     }
 }

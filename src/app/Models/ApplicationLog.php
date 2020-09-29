@@ -2,6 +2,7 @@
 
 namespace SmartContact\TrackingApplicationLog\app\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ApplicationLog extends Model
@@ -36,5 +37,13 @@ class ApplicationLog extends Model
     public function subject()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * @return string
+     */
+    public function getRomeTimezone()
+    {
+        return Carbon::parse($this->created_at, 'UTC')->setTimezone('Europe/Rome');
     }
 }

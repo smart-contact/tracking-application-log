@@ -69,7 +69,7 @@
                         {{ $applicationLog->ip }}
                     </td>
                     <td class="py-4 px-6">
-                        {{ $applicationLog->created_at }}
+                        {{ $applicationLog->getRomeTimezone() }}
                     </td>
                     <td class="py-4 px-6" align="right">
                         <a href="{{ route('application_logs.show', [ 'application_log' => $applicationLog ]) }}" class="button-icon-gray"><i class="far fa-fw fa-eye"></i></a>

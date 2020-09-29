@@ -32,12 +32,12 @@ class InstallCommand extends Command
         $this->comment('Publishing Tracking Application Log Service Provider...');
         $this->callSilent('vendor:publish', ['--tag' => 'tracking-application-log']);
 
-        $this->registerTrackingApplicationLogServiceProvider();
+        $this->registerTrackingApplicationLogProvider();
 
         $this->info('Tracking Application Log scaffolding installed successfully.');
     }
 
-    protected function registerTrackingApplicationLogServiceProvider()
+    protected function registerTrackingApplicationLogProvider()
     {
         $namespace = Str::replaceLast('\\', '', $this->laravel->getNamespace());
 

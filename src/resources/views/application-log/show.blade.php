@@ -49,7 +49,7 @@
                 <div>
                     <div class="font-light text-xs text-gray-600 ">
                         <div>
-                            <i class="fa fa-fw fa-clock mr-1"></i>{{ $applicationLog->created_at }}
+                            <i class="fa fa-fw fa-clock mr-1"></i>{{ $applicationLog->getRomeTimezone() }}
                         </div>
                     </div>
                 </div>

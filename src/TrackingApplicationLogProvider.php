@@ -31,7 +31,7 @@ class TrackingApplicationLogProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
         $this->publishes([
-            __DIR__ . "/stubs/TrackingApplicationLogProvider.stub"=> app_path('Providers/TrackingApplicationLogServiceProvider.php'),
+            __DIR__ . "/stubs/TrackingApplicationLogProvider.stub"=> app_path('Providers/TrackingApplicationLogProvider.php'),
         ], 'tracking-application-log');
     }
 }

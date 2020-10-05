@@ -2,8 +2,12 @@
     "name": "smart-contact/tracking-application-log",
     "authors": [
         {
-            "name": "matteodeliperi",
-            "email": "matteo.deliperi@smart-contact.it"
+            "name": "Andrea Ortu",
+            "email": "andrea.ortu@smart-contact.it"
+        },
+        {
+            "name": "Matteo Meloni",
+            "email": "matteo.meloni@smart-contact.it"
         }
     ],
     "require": {

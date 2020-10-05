@@ -1,8 +1,6 @@
 <?php
 
-Route::namespace('SmartContact\TrackingApplicationLog\app\Http\Controllers')
-    ->middleware(["web", "auth", "can:view-applicationLogs"])
+Route::namespace('SmartContact\TrackingApplicationLog\app\Http\Controllers\Web')
     ->group(function() {
-        Route::get('application-logs', 'ApplicationLogController@index')->name('application_logs.index');
-        Route::get('application-logs/{application_log}', 'ApplicationLogController@show')->name('application_logs.show');
+        Route::get('application-logs', 'HomeController@index');
     });

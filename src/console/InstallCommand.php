@@ -32,8 +32,8 @@ class InstallCommand extends Command
         $this->comment('Publishing Tracking Application Log Service Provider...');
         $this->callSilent('vendor:publish', ['--tag' => 'tracking-application-log']);
 
-        $this->comment('Publishing Telescope Assets...');
-        $this->callSilent('vendor:publish', ['--tag' => 'telescope-assets']);
+        $this->comment('Publishing Tracking Application Log Assets...');
+        $this->callSilent('vendor:publish', ['--tag' => 'tracking-application-log-assets']);
         
         $this->registerTrackingApplicationLogProvider();
 

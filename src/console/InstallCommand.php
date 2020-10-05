@@ -57,8 +57,7 @@ class InstallCommand extends Command
 
         file_put_contents(config_path('app.php'), str_replace(
             "{$namespace}\\Providers\RouteServiceProvider::class,".$eol,
-            "{$namespace}\\Providers\RouteServiceProvider::class,".$eol."
-            {$namespace}\Providers\TrackingApplicationLogProvider::class,".$eol,
+            "{$namespace}\\Providers\RouteServiceProvider::class,".$eol."        {$namespace}\Providers\TrackingApplicationLogProvider::class,".$eol,
             $appConfig
         ));
 

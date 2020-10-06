@@ -73,6 +73,6 @@
     </div>
 </div>
 
-<script src="{{ asset('vendor/tracking-application-log/js/app.js') }}"></script>
+<script src="{{ asset('vendor/tracking-application-log/app.js') }}"></script>
 </body>
 </html>

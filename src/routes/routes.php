@@ -7,7 +7,8 @@ Route::namespace('SmartContact\TrackingApplicationLog\app\Http\Controllers\Web')
     });
 
 Route::namespace('SmartContact\TrackingApplicationLog\app\Http\Controllers\Api')
-    ->prefix('api/application-logs')    ->group(function() {
+    ->prefix('api/application-logs')    
+    ->group(function() {
         Route::get('/logs', 'ApplicationLogController@retrieveLogs');
         Route::get('/logs/download', 'ApplicationLogController@download');
         Route::get('/logs/{applicationLog}', 'ApplicationLogController@show');

@@ -23,7 +23,7 @@ class TrackingApplicationLogProvider extends ServiceProvider
      */
     protected function gate()
     {
-        Gate::define('view-applicationLogs', function ($user) {
+        Gate::define('view', function ($user) {
             return false;
         });
     }

@@ -1,9 +1,8 @@
 <template>
   <div class="card">
-    <div id="header">
-        <slot name="header" class="uppercase">
-            {{ title }}
-        </slot>
+    <div id="header" class="uppercase flex justify-between">
+        {{ title }}
+        <slot name="header"></slot>
     </div>
     <div id="body">
         <slot name="body" style="width: 100%"></slot>

@@ -71,7 +71,8 @@ trait TrackingApplicationLogs
                 'level' => 'info',
                 'description' => $this->getApplicationLogDescription($this, $event),
                 'changes' => json_decode($this->applicationLogsChanges()),
-                'actor_id' => auth()->user()->id ?? null,
+                'actor_id' => auth()->user() ? auth()->user()->id :null,
+                'email' => auth()->user() ? auth()->user()->email : null,
                 'subject' => strtolower((new ReflectionClass($this))->getShortName())
             ];
         }

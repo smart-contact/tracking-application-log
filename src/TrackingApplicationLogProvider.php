@@ -2,8 +2,12 @@
 
 namespace SmartContact\TrackingApplicationLog;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use SmartContact\TrackingApplicationLog\Console\DeleteApplicationLogFile;
+use SmartContact\TrackingApplicationLog\Console\InstallCommand;
+use SmartContact\TrackingApplicationLog\Console\SetEmailOnApplicationLog;
 
 class TrackingApplicationLogProvider extends ServiceProvider
 {
@@ -26,7 +30,7 @@ class TrackingApplicationLogProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'tracking-application-log');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
 
@@ -37,5 +41,17 @@ class TrackingApplicationLogProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . "/stubs/TrackingApplicationLogProvider.stub"=> app_path('Providers/TrackingApplicationLogProvider.php'),
         ], 'tracking-application-log');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallCommand::class,
+                SetEmailOnApplicationLog::class,
+                DeleteApplicationLogFile::class,
+            ]);
+        }
+
+        $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
+            $schedule->command('tracking-application-log:delete-application-log-file')->daily();
+        });
     }
 }

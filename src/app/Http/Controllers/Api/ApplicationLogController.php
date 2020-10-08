@@ -3,30 +3,43 @@
 namespace SmartContact\TrackingApplicationLog\app\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use SmartContact\TrackingApplicationLog\app\Exports\UsersExport;
+use SmartContact\TrackingApplicationLog\app\Jobs\ApplicationLogExportJob;
 use SmartContact\TrackingApplicationLog\app\Models\ApplicationLog;
 
-class ApplicationLogController extends Controller
+class ApplicationLogController extends ApiBaseController
 {
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function retrieveLogs()
     {
         $request = request('q');
-        $applicationLogs = ApplicationLog::where('description', 'like', "%{$request}%")
+        $applicationLogs = ApplicationLog::where('email', 'like', "%{$request}%")
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(10);
 
-        return view('tracking-application-log::application-log.index', compact('applicationLogs'));
+        return $applicationLogs;
     }
 
     /**
      * @param $application_log
      * @return mixed
      */
-    public function show($application_log)
+    public function show($applicationLog)
     {
-        $applicationLog =  ApplicationLog::find($application_log);
-        return view('tracking-application-log::application-log.show', compact('applicationLog'));
+        return ApplicationLog::find($applicationLog);
+    }
+
+    public function download()
+    {   
+        $settings = [
+            'exportFormat' => request()->exportFormat ?? 'xlsx',
+            'fromDate' => request()->fromDate,
+            '$toDate' => request()->toDate
+        ];
+        
+        ApplicationLogExportJob::dispatch($settings);
     }
 }

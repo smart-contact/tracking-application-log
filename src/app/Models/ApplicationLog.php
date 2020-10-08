@@ -42,8 +42,8 @@ class ApplicationLog extends Model
     /**
      * @return string
      */
-    public function getRomeTimezone()
+    public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($this->created_at, 'UTC')->setTimezone('Europe/Rome');
+        return Carbon::parse($value)->timezone('Europe/Rome')->format('d-m-Y H:i');
     }
 }

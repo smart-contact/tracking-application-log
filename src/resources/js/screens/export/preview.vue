@@ -8,33 +8,20 @@
                             <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700border-4 text-white py-1 px-2 rounded mr-4 export" @click="retrieveLogs">
                                 <font-awesome-icon icon="undo-alt"/>
                             </button>
-                            <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700border-4 text-white py-1 px-2 rounded mr-4 export" @click="exportData">
-                                <font-awesome-icon icon="download"/>&nbsp;Export
-                            </button>
-                            <div class="flex items-center border-b border-teal-500 search">
-                                <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" v-model="search" placeholder="Ricerca Email" aria-label="email" @keyup.enter="retrieveLogs">
-                                <button :disabled="loading" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700border-4 text-white py-1 px-2 rounded" type="button" @click="retrieveLogs">
-                                    <font-awesome-icon :icon="searchIcon"/>&nbsp;
-                                    Cerca
-                                </button>
-                            </div>
                         </form>
-                        <p v-if="currentSearch" class="mt-4 currentSearch"><span class="text-gray-500">Rircerca attuale: </span> <span class="ml-2 bg-gray-200 font-mono px-3 py-1 rounded text-gray-900">{{ currentSearch }} </span></p>
                     </div>
                 </template>
                 <template v-slot:body>
-                    <div v-if="loading" style="height:100px">
+                    <div v-if="loading" style="height: 150px">
                         <loading></loading>
                     </div>
                     <div v-if="! loading && logs.data && ! error">
                         <table class="border w-full">
                             <thead>
                                 <tr>
-                                    <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Email</th>
+                                    <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Stato</th>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Risorsa</th>
-                                    <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Descrizione</th>
-                                    <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Livello</th>
-                                    <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Ip</th>
+                                    <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Log</th>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Creato Il</th>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800"></th>
                                 </tr>
@@ -45,14 +32,16 @@
                                     :key="index"
                                     class="border-b border-gray-300 hover:bg-blue-100 bg-white"
                                 >
-                                    <td class="py-4 px-6">{{ log.email }}</td>
-                                    <td class="py-4 px-6">{{ log.subject }}</td>
-                                    <td class="py-4 px-6">{{ log.description }}</td>
-                                    <td class="py-4 px-6"><badge :type="log.level"></badge></td>
-                                    <td class="py-4 px-6">{{ log.ip }}</td>
+                                    <td class="py-4 px-6"><badge :type="log.status"></badge></td>
+                                    <td class="py-4 px-6">{{ log.model }}</td>
+                                    <td class="py-4 px-6">{{ log.log ? log.log : '-' }}</td>
                                     <td class="py-4 px-6">{{ log.created_at }}</td>
-                                    <td class="py-4 px-6" @click="triggerDrawer()">
-                                        <router-link :to="{ name: 'logs-show', params: { id: log.id }}" exact><sc-icon icon="eye"/></router-link>
+                                    <td class="py-4 px-6">
+                                        <form :action="'/' + log.url" v-if="log.url">
+                                            <button type="submit">
+                                                <sc-icon icon="download"/>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
@@ -91,7 +80,6 @@
                 logs: {
                     data: []
                 },
-                open: false,
                 loading: true,
                 error: false,
                 totalRows: 20,
@@ -101,29 +89,31 @@
                 search: '',
                 currentSearch: '',
                 path: {
-                    logs: {
-                        retrieve: '/logs?page={page}&q={q}',
-                        export: '/logs/download'
+                    exportLogs: {
+                        retrieve: '/export-logs?page={page}&q={q}',
                     }
                 }
             }
         },
         mounted() {
-            this.retrieveLogs();
-            console.log(window.authUser);
+            this.sleep(5000).then(() => {
+                this.retrieveLogs()
+            });
+            
         },
         computed: {
             searchIcon() {
                 return this.loading ? 'spinner' : 'search';
             }
         },
+        
         methods: {
             triggerDrawer() {
                 this.open = ! this.open;
             },
             retrieveLogs(page = 1) {
                 
-                let path = this.path.logs.retrieve
+                let path = this.path.exportLogs.retrieve
                     .replace('{page}', page)
                     .replace('{q}', this.search);
                 this.loading = true;
@@ -139,20 +129,10 @@
                         this.loading = false;
                     })  
             },
-            exportData() {
-                this.$http.get(this.path.logs.export)
-                    .then(() => {
-                        this.$router.push({name: 'export-logs'});
-                    })
+            sleep(time) {
+                return new Promise((resolve) => setTimeout(resolve, time));
             }
         },
-        watch: {
-            search(value) {
-                if(value == '') {
-                    this.retrieveLogs();
-                }
-            }
-        }
     }
 </script>
 

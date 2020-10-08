@@ -49,8 +49,8 @@ class TrackingApplicationLogProvider extends ServiceProvider
                 DeleteApplicationLogFile::class,
             ]);
         }
-
-        $this->callAfterResolving(Schedule::class, function (Schedule $schedule) {
+        $this->app->booted(function () {
+            $schedule = app(Schedule::class);
             $schedule->command('tracking-application-log:delete-application-log-file')->daily();
         });
     }

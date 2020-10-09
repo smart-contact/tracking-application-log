@@ -46502,7 +46502,7 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   !_vm.loading && _vm.logs.data && !_vm.error
-                    ? _c("div", [
+                    ? _c("div", { staticStyle: { "overflow-x": "scroll" } }, [
                         _c("table", { staticClass: "border w-full" }, [
                           _c("thead", [
                             _c("tr", [
@@ -46837,7 +46837,7 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   !_vm.loading && _vm.logs.data && !_vm.error
-                    ? _c("div", [
+                    ? _c("div", { staticStyle: { "overflow-x": "scroll" } }, [
                         _c("table", { staticClass: "border w-full" }, [
                           _c("thead", [
                             _c("tr", [

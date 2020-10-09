@@ -15,7 +15,7 @@
                     <div v-if="loading" style="height: 150px">
                         <loading></loading>
                     </div>
-                    <div v-if="! loading && logs.data && ! error">
+                    <div v-if="! loading && logs.data && ! error" style="overflow-x: scroll">
                         <table class="border w-full">
                             <thead>
                                 <tr>

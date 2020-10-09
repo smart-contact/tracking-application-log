@@ -53,7 +53,7 @@ class ApplicationLogExportJob implements ShouldQueue
     private function createExportLog()
     {
         return ExportLog::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => request()->header('userId'),
             'model' => 'ApplicationLog',
             'status' => ExportLog::$STATES['STARTED']
         ]);

@@ -14,7 +14,7 @@ class CreateExportLogsTable extends Migration
     public function up()
     {
         Schema::create('export_logs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('model');
             $table->string('status');
             $table->string('url')->nullable();

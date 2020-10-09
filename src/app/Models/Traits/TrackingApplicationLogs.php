@@ -111,14 +111,11 @@ trait TrackingApplicationLogs
     /**
      *
      */
-    public function trackingUserLogin($email)
+    public function trackingControllerAccess($subject, $description)
     {
         $baseInfoUserArray = [
             'level' => 'info',
             'description' => "new_user_login",
-            'log' => json_encode([
-                'user_email' => $email
-            ]),
             'subject' => 'LoginController'
         ];
 

@@ -110,7 +110,6 @@
         },
         mounted() {
             this.retrieveLogs();
-            console.log(window.authUser);
         },
         computed: {
             searchIcon() {

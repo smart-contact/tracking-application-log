@@ -41,24 +41,37 @@ class ApplicationLogExportJob implements ShouldQueue
     public function handle()
     {
         $this->exportLog = $this->createExportLog();
-        Excel::store(new ApplicationLogsExport($this->settings), $this->path);
-        $this->updateExportLog();
+        try {
+            Excel::store(new ApplicationLogsExport($this->settings), $this->path);
+        } catch (\Exception $e) {
+            $this->errorLog($e);
+        }
+        
+        $this->completeLog();
     }
  
     private function createExportLog()
     {
         return ExportLog::create([
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
             'model' => 'ApplicationLog',
             'status' => ExportLog::$STATES['STARTED']
         ]);
     }
 
-    private function updateExportLog()
+    private function completeLog()
     {
         $this->exportLog->update([
             'status' => ExportLog::$STATES['COMPLETED'],
             'url' => $this->url
+        ]);
+    }
+
+    private function errorLog($e)
+    {
+        $this->exportLog->update([
+            'status' => ExportLog::$STATES['ERROR'],
+            'log' => $e->getMessage()
         ]);
     }
 

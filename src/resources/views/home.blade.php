@@ -47,6 +47,7 @@
 <body>
 <div id="tracking-application-log" v-cloak class="">
     <div class="mb-5 mx-auto p-10 text-gray-800">
+        <go-back destination="/" text="Home" icon="home"></go-back>
         <div class="flex align-items-center py-4 header">
             <h4 class="mb-0 ml-3"><strong>Tracking Application Log</strong></h4>
         </div>

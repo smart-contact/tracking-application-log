@@ -32,14 +32,6 @@ class ApplicationLog extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
-    public function subject()
-    {
-        return $this->morphTo();
-    }
-
-    /**
      * @return string
      */
     public function getCreatedAtAttribute($value)

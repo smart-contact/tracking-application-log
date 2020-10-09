@@ -3,7 +3,7 @@ import Vue from 'vue';
 import Routes from './routes';
 import VueRouter from 'vue-router';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEye, faArrowLeft, faSearch, faSpinner, faDownload, faUndoAlt, faTable } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faArrowLeft, faSearch, faSpinner, faDownload, faUndoAlt, faTable, faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueTailwind from 'vue-tailwind'
 import Card from './components/Card';
@@ -11,6 +11,7 @@ import Loading from './components/Loading';
 import Badge from './components/Badge';
 import ScIcon from './components/ScIcon';
 import DataNotFound from './components/DataNotFound';
+import GoBack from './components/GoBack';
 Vue.use(VueRouter)
 const settings = {
   TPagination: {
@@ -41,7 +42,7 @@ const settings = {
 
 Vue.use(VueTailwind, settings);
 
-library.add(faEye, faArrowLeft, faSearch, faSpinner, faDownload, faUndoAlt, faTable )
+library.add(faEye, faArrowLeft, faSearch, faSpinner, faDownload, faUndoAlt, faTable, faHome )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('card', Card)
@@ -49,6 +50,7 @@ Vue.component('loading', Loading)
 Vue.component('badge', Badge)
 Vue.component('ScIcon', ScIcon)
 Vue.component('DataNotFound', DataNotFound)
+Vue.component('GoBack', GoBack)
 Vue.prototype.openNav = function() {
   if(this.$refs.LeftDrawer.active){
       this.$refs.LeftDrawer.close();
@@ -69,8 +71,6 @@ const router = new VueRouter({
 
 var app = new Vue({
     el: '#tracking-application-log',
-    router,
-    data: {
-      message: 'Hello Vue!'
-    },
+    components: { GoBack },
+    router
   })

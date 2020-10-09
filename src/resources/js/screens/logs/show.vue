@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="mb-2 btn" @click="$router.go(-1)"><font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;Indietro</button>
+        <go-back></go-back>
         <card>
             <template v-slot:body>
                 <div v-if="! loading" class="p-4">
@@ -76,9 +76,5 @@
         margin-top: .5rem;
         margin-bottom: .5rem;
         margin-left: 1rem;
-    }
-
-    .btn {
-        color: #00938c;
     }
 </style>

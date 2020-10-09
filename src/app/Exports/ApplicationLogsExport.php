@@ -23,8 +23,8 @@ class ApplicationLogsExport implements FromCollection, WithHeadings, ShouldQueue
     {
         return [
             'Id',
+            'Id Utente',
             'Risorsa',
-            'Link Risorsa',
             'Descrizione',
             'Log',
             'Cambiamenti',

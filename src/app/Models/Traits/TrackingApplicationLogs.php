@@ -111,12 +111,12 @@ trait TrackingApplicationLogs
     /**
      *
      */
-    public function trackingControllerAccess($subject, $description)
+    public function trackingControllerAccess($subject, $description = NULL)
     {
         $baseInfoUserArray = [
             'level' => 'info',
-            'description' => "new_user_login",
-            'subject' => 'LoginController'
+            'description' => $description,
+            'subject' => $subject
         ];
 
         $this->registerApplicationLog(null, $baseInfoUserArray);

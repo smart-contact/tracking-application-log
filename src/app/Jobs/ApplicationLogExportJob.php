@@ -43,11 +43,10 @@ class ApplicationLogExportJob implements ShouldQueue
         $this->exportLog = $this->createExportLog();
         try {
             Excel::store(new ApplicationLogsExport($this->settings), $this->path);
+            $this->completeLog();
         } catch (\Exception $e) {
             $this->errorLog($e);
         }
-        
-        $this->completeLog();
     }
  
     private function createExportLog()

@@ -21,6 +21,7 @@ class ApplicationLog extends Model
         'platform',
         'platform_version',
         'ip',
+        'email'
     ];
 
     /**

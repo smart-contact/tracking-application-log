@@ -116,7 +116,9 @@ trait TrackingApplicationLogs
         $baseInfoUserArray = [
             'level' => 'info',
             'description' => $description,
-            'subject' => $subject
+            'subject' => $subject,
+            'actor_id' => auth()->user() ? auth()->user()->id :null,
+            'email' => auth()->user() ? auth()->user()->email : null,
         ];
 
         $this->registerApplicationLog(null, $baseInfoUserArray);

@@ -18,7 +18,8 @@ class ExportLog extends Model
         'user_id',
         'status',
         'model',
-        'url'
+        'url',
+        'log'
     ];
 
      /**

@@ -12486,8 +12486,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'log-preview',
   data: function data() {
@@ -46865,15 +46863,6 @@ var render = function() {
                                   staticClass:
                                     "py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800"
                                 },
-                                [_vm._v("Descrizione")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "th",
-                                {
-                                  staticClass:
-                                    "py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800"
-                                },
                                 [_vm._v("Livello")]
                               ),
                               _vm._v(" "),
@@ -46919,10 +46908,6 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("td", { staticClass: "py-4 px-6" }, [
                                     _vm._v(_vm._s(log.subject))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", { staticClass: "py-4 px-6" }, [
-                                    _vm._v(_vm._s(log.description))
                                   ]),
                                   _vm._v(" "),
                                   _c(

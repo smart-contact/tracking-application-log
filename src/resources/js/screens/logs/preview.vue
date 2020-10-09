@@ -32,7 +32,6 @@
                                 <tr>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Email</th>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Risorsa</th>
-                                    <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Descrizione</th>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Livello</th>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Ip</th>
                                     <th class="py-4 px-6 bg-gray-200 font-bold uppercase text-sm text-left text-gray-800">Creato Il</th>
@@ -47,7 +46,6 @@
                                 >
                                     <td class="py-4 px-6">{{ log.email }}</td>
                                     <td class="py-4 px-6">{{ log.subject }}</td>
-                                    <td class="py-4 px-6">{{ log.description }}</td>
                                     <td class="py-4 px-6"><badge :type="log.level"></badge></td>
                                     <td class="py-4 px-6">{{ log.ip }}</td>
                                     <td class="py-4 px-6">{{ log.created_at }}</td>

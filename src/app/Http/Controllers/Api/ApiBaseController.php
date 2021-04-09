@@ -12,7 +12,7 @@ class ApiBaseController extends Controller
         $authorization = request()->header('Authorization');
         
         if(! $authorization || $authorization != $token) {
-            abort(401);
+            return response("unauthorized", 401);
         }
     }
 }

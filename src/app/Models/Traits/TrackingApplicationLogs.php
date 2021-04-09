@@ -2,7 +2,6 @@
 
 namespace SmartContact\TrackingApplicationLog\app\Models\Traits;
 
-
 use App\Http\Controllers\Auth\LoginController;
 use Jenssegers\Agent\Agent;
 use ReflectionClass;
